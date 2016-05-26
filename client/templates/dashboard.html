@@ -1,0 +1,180 @@
+---
+name: dashboard
+url: /dashboard
+animationIn: slideInLeft
+animationOut: slideOutRight
+controller: DashboardController as vm
+---
+<div class="grid-frame vertical">
+
+  <!-- Top Bar -->
+  <nav class="primary title-bar">
+      <span class="center">
+        <span class="show-for-small-only"><a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a></span>
+      </span>
+    <ul class="left menu-bar primary condense">
+      <li class="show-for-medium">
+        <a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Tabs -->
+  <div class="grid-block shrink">
+    <div class="grid-container contain-left">
+      <div class="grid-content">
+        <div zf-tabs="" id="main-tabs" displaced="true">
+          <div zf-tab="" title="Data Sources">
+
+            <div class="grid-block medium-up-4">
+
+              <div class="grid-block">
+                <div class="grid-content">
+                  <a zf-open="addDataSourceModal">
+                    <div class="card">
+                      <div class="card-section">
+                        <h3>Data Source 1</h3>
+                        <p><strong>Data Source:</strong> collection1</p>
+                        <p><em>1,000 records</em></p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="grid-block">
+                <div class="grid-content">
+                  <div class="card">
+                    <div class="card-section">
+                      <h3>Data Source 1</h3>
+                      <p><strong>Data Source:</strong> collection1</p>
+                      <p><em>1,000 records</em></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-block">
+                <div class="grid-content">
+                  <div class="card">
+                    <div class="card-section">
+                      <h3>Data Source 1</h3>
+                      <p><strong>Data Source:</strong> collection1</p>
+                      <p><em>1,000 records</em></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-block">
+                <div class="grid-content">
+                  <div class="card">
+                    <div class="card-section">
+                      <h3>Data Source 1</h3>
+                      <p><strong>Data Source:</strong> collection1</p>
+                      <p><em>1,000 records</em></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-block">
+                <div class="grid-content">
+                  <div class="card">
+                    <div class="card-section">
+                      <h3>Data Source 1</h3>
+                      <p><strong>Data Source:</strong> collection1</p>
+                      <p><em>1,000 records</em></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div zf-tab="" title="Projects">
+
+            <div class="grid-block medium-up-4">
+              <div class="grid-block">
+                <div class="grid-content">
+                  <div class="card">
+                    <div class="card-section">
+                      <h3>Project 1</h3>
+                      <p><strong>Created By:</strong> user1</p>
+                      <p><em>Last Updated: 5/25/2016 12:00:00 PM (UTC)</em></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid-block">
+                <div class="grid-content">
+                  <div class="card">
+                    <div class="card-section">
+                      <h3>Project 1</h3>
+                      <p><strong>Created By:</strong> user1</p>
+                      <p><em>Last Updated: 5/25/2016 12:00:00 PM (UTC)</em></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#" class="button" zf-open="addDataSourceModal">+ Add Data Source</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="grid-block">
+    <div class="grid-content">
+      <div zf-tab-content="" target="main-tabs"></div>
+    </div>
+  </div>
+
+  <!-- Add Data Source Modal -->
+  <div zf-modal="" id="addDataSourceModal">
+    <p><a zf-close="" class="close-button">x</a></p>
+    <form>
+      <div class="grid-block vertical">
+        <div class="grid-content">
+          <label>
+            Data Source Display Name:
+            <input type="text" placeholder="Pretty name">
+          </label>
+        </div>
+        <div class="grid-content">
+          <label>Data Source Type:</label>
+          <select name="" id="dataSourceTypes">
+            <option value="fusion">Fusion</option>
+            <option value="solr">Solr</option>
+            <option value="spark">Spark</option>
+          </select>
+        </div>
+        <div class="grid-content">
+          <label>Fusion URL:
+            <input type="text" placeholder="http://localhost:8764" value="http://localhost:8764">
+          </label>
+        </div>
+        <div class="grid-content">
+          <label>Collection:</label>
+          <select name="" id="fusionCollections">
+            <option value="collection1">collection1</option>
+            <option value="collection2">collection2</option>
+          </select>
+        </div>
+        <div class="grid-content">
+          <label>Query Pipeline</label>
+          <select name="" id="queryPipelines">
+            <option value="default">default</option>
+            <option value="collection1-default">collection1-default</option>
+            <option value="collection2-default">collection2-default</option>
+          </select>
+        </div>
+        <div class="grid-content">
+          <a href="#" class="button success">Add</a>
+          <a href="#" class="button alert">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
