@@ -1,0 +1,37 @@
+---
+name: analyze
+url: /dashboard/analyze
+animationIn: slideInLeft
+animationOut: slideOutRight
+controller: DashboardExploreController as vm
+---
+<div class="grid-frame vertical">
+
+  <!-- Top Bar -->
+  <nav class="primary title-bar">
+      <span class="center">
+        <span class="show-for-small-only"><a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a></span>
+      </span>
+    <ul class="left menu-bar primary condense">
+      <li class="show-for-medium">
+        <a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="grid-block">
+    <div class="grid-content">
+      <analyze-bar></analyze-bar>
+    </div>
+  </div>
+
+  <div class="grid-block">
+    <div class="grid-content">
+      <!--
+      <table-panel></table-panel>
+      -->
+      <h3>Table Panel</h3>
+    </div>
+  </div>
+
+</div>

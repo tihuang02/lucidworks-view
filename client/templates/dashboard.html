@@ -6,7 +6,6 @@ animationOut: slideOutRight
 controller: DashboardController as vm
 ---
 <div class="grid-frame vertical">
-
   <!-- Top Bar -->
   <nav class="primary title-bar">
       <span class="center">
@@ -24,13 +23,15 @@ controller: DashboardController as vm
     <div class="grid-container contain-left">
       <div class="grid-content">
         <div zf-tabs="" id="main-tabs" displaced="true">
-          <div zf-tab="" title="Data Sources">
 
+          <div zf-tab="" title="Data Sources">
+            <!-- Data Sources Tab Content -->
             <div class="grid-block medium-up-4">
 
+              <!-- Data Source 1 -->
               <div class="grid-block">
                 <div class="grid-content">
-                  <a zf-open="addDataSourceModal">
+                  <a zf-popup-toggle="dataSourcePopup">
                     <div class="card">
                       <div class="card-section">
                         <h3>Data Source 1</h3>
@@ -39,6 +40,26 @@ controller: DashboardController as vm
                       </div>
                     </div>
                   </a>
+
+                  <!-- Data Source Popup Content -->
+                  <zf-popup id="dataSourcePopup">
+                    <div class="grid-block">
+                      <div class="grid-block">
+                        <div class="grid-content">
+                          <h3>Data Source 1</h3>
+                          <p>Details about the data source...</p>
+                        </div>
+                      </div>
+                      <div class="grid-block">
+                        <div class="grid-content">
+                          <h4>Actions</h4>
+                          <a ui-sref="explore({ dataSourceId: 1 })" class="button">Explore</a>
+                          <a href="#" class="button">Add to project</a>
+                          <a href="#" class="button alert">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+                  </zf-popup>
                 </div>
               </div>
 
@@ -90,8 +111,9 @@ controller: DashboardController as vm
           </div>
 
           <div zf-tab="" title="Projects">
-
+            <!-- Projects Tab Content -->
             <div class="grid-block medium-up-4">
+
               <div class="grid-block">
                 <div class="grid-content">
                   <div class="card">
@@ -117,13 +139,28 @@ controller: DashboardController as vm
             </div>
           </div>
 
+          <!-- Analyze Tab -->
+          <div zf-tab="" title="Analyze">
+            <div class="grid-block">
+              <div class="grid-content">
+                <analyze-bar></analyze-bar>
+              </div>
+            </div>
+            <div class="grid-block">
+              <div class="grid-content">
+                <table-panel></table-panel>
+              </div>
+            </div>
+          </div>
+
+
           <a href="#" class="button" zf-open="addDataSourceModal">+ Add Data Source</a>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Content -->
+  <!-- Main Tabs Content -->
   <div class="grid-block">
     <div class="grid-content">
       <div zf-tab-content="" target="main-tabs"></div>
@@ -170,8 +207,8 @@ controller: DashboardController as vm
           </select>
         </div>
         <div class="grid-content">
-          <a href="#" class="button success">Add</a>
-          <a href="#" class="button alert">Cancel</a>
+          <a href="#" class="button success" zf-close="">Add</a>
+          <a href="#" class="button alert" zf-close="">Cancel</a>
         </div>
       </div>
     </form>

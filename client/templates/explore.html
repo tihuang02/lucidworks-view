@@ -1,0 +1,28 @@
+---
+name: explore
+url: /dashboard/explore/{dataSourceId:[0-9]*}
+animationIn: slideInLeft
+animationOut: slideOutRight
+controller: DashboardExploreController as vm
+---
+<div class="grid-frame vertical">
+
+  <!-- Top Bar -->
+  <nav class="primary title-bar">
+      <span class="center">
+        <span class="show-for-small-only"><a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a></span>
+      </span>
+    <ul class="left menu-bar primary condense">
+      <li class="show-for-medium">
+        <a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="grid-block">
+    <div class="grid-content">
+      Data Source ID = {{ vm.dataSourceId }}
+    </div>
+  </div>
+
+</div>
