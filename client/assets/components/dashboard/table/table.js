@@ -2,7 +2,9 @@
   'use strict';
 
   angular
-    .module('lucidworksView.components.dashboard.table', ['lucidworksView.services.d3'])
+    .module('lucidworksView.components.dashboard.table', [
+      'ui.bootstrap'
+    ])
     .directive('tablePanel', tablePanel);
 
   function tablePanel() {
@@ -10,16 +12,15 @@
     return {
       restrict: 'E',
       templateUrl: 'assets/components/dashboard/table/table.html',
-      controller: Controller,
-      controllerAs: 'vm',
-      bindToController: true
+      scope: {
+        panelData: '='
+      },
+      link: function link(scope) {
+        scope.$watch('panelData', function(newVal, oldVal) {
+          console.log('panelData has changed! newVal =', newVal);
+          // TODO refresh the table
+        }, true);
+      }
     };
-  }
-
-  function Controller(D3Service) {
-    'ngInject';
-    var vm = this;
-
-
   }
 })();

@@ -24,42 +24,37 @@ controller: DashboardController as vm
       <div class="grid-content">
         <div zf-tabs="" id="main-tabs" displaced="true">
 
-          <div zf-tab="" title="Data Sources">
-            <!-- Data Sources Tab Content -->
+          <!-- Data Sets Tab -->
+          <div zf-tab="" title="Data Sets">
             <div class="grid-block medium-up-4">
-
-              <!-- Data Source 1 -->
+              <!-- Data Set 1 -->
               <div class="grid-block">
                 <div class="grid-content">
-                  <a zf-popup-toggle="dataSourcePopup">
+
+                  <a zf-popup-toggle="dataSetPopup">
                     <div class="card">
                       <div class="card-section">
-                        <h3>Data Source 1</h3>
-                        <p><strong>Data Source:</strong> collection1</p>
+                        <h3>Data Set 1</h3>
+                        <p><strong>Data Set:</strong> collection1</p>
                         <p><em>1,000 records</em></p>
                       </div>
                     </div>
                   </a>
+                </div>
+              </div>
 
-                  <!-- Data Source Popup Content -->
-                  <zf-popup id="dataSourcePopup">
-                    <div class="grid-block">
-                      <div class="grid-block">
-                        <div class="grid-content">
-                          <h3>Data Source 1</h3>
-                          <p>Details about the data source...</p>
-                        </div>
-                      </div>
-                      <div class="grid-block">
-                        <div class="grid-content">
-                          <h4>Actions</h4>
-                          <a ui-sref="explore({ dataSourceId: 1 })" class="button">Explore</a>
-                          <a href="#" class="button">Add to project</a>
-                          <a href="#" class="button alert">Delete</a>
-                        </div>
-                      </div>
+              <!-- Data Set 2 Card -->
+              <div class="grid-block">
+                <div class="grid-content">
+
+                  <div class="card">
+                    <div class="card-section">
+                      <h3>Data Set 2</h3>
+                      <p><strong>Data Set:</strong> collection2</p>
+                      <p><em>1,000 records</em></p>
                     </div>
-                  </zf-popup>
+                  </div>
+
                 </div>
               </div>
 
@@ -67,8 +62,8 @@ controller: DashboardController as vm
                 <div class="grid-content">
                   <div class="card">
                     <div class="card-section">
-                      <h3>Data Source 1</h3>
-                      <p><strong>Data Source:</strong> collection1</p>
+                      <h3>Data Set 1</h3>
+                      <p><strong>Data Set:</strong> collection1</p>
                       <p><em>1,000 records</em></p>
                     </div>
                   </div>
@@ -78,8 +73,8 @@ controller: DashboardController as vm
                 <div class="grid-content">
                   <div class="card">
                     <div class="card-section">
-                      <h3>Data Source 1</h3>
-                      <p><strong>Data Source:</strong> collection1</p>
+                      <h3>Data Set 1</h3>
+                      <p><strong>Data Set:</strong> collection1</p>
                       <p><em>1,000 records</em></p>
                     </div>
                   </div>
@@ -89,19 +84,8 @@ controller: DashboardController as vm
                 <div class="grid-content">
                   <div class="card">
                     <div class="card-section">
-                      <h3>Data Source 1</h3>
-                      <p><strong>Data Source:</strong> collection1</p>
-                      <p><em>1,000 records</em></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="grid-block">
-                <div class="grid-content">
-                  <div class="card">
-                    <div class="card-section">
-                      <h3>Data Source 1</h3>
-                      <p><strong>Data Source:</strong> collection1</p>
+                      <h3>Data Set 1</h3>
+                      <p><strong>Data Set:</strong> collection1</p>
                       <p><em>1,000 records</em></p>
                     </div>
                   </div>
@@ -110,8 +94,8 @@ controller: DashboardController as vm
             </div>
           </div>
 
+          <!-- Projects Tab -->
           <div zf-tab="" title="Projects">
-            <!-- Projects Tab Content -->
             <div class="grid-block medium-up-4">
 
               <div class="grid-block">
@@ -140,21 +124,18 @@ controller: DashboardController as vm
           </div>
 
           <!-- Analyze Tab -->
+          <!--
           <div zf-tab="" title="Analyze">
-            <div class="grid-block">
-              <div class="grid-content">
-                <analyze-bar></analyze-bar>
-              </div>
-            </div>
-            <div class="grid-block">
-              <div class="grid-content">
-                <table-panel></table-panel>
-              </div>
-            </div>
+            <a ui-sref="analyze">Analyze</a>
           </div>
+          -->
 
+          <!-- TODO -->
+          <a class="button" ui-sref="explore">Explore</a>
+          <a class="button" ui-sref="analyze">Analyze</a>
 
-          <a href="#" class="button" zf-open="addDataSourceModal">+ Add Data Source</a>
+          <!-- <a class="button" ng-click="vm.testClick()">Click</a> -->
+          <a href="#" class="button" zf-open="addDataSetModal">+ Add Data Set</a>
         </div>
       </div>
     </div>
@@ -164,22 +145,43 @@ controller: DashboardController as vm
   <div class="grid-block">
     <div class="grid-content">
       <div zf-tab-content="" target="main-tabs"></div>
+      <!-- <a class="button" ng-click="vm.testClick()">Click</a> -->
     </div>
   </div>
 
-  <!-- Add Data Source Modal -->
-  <div zf-modal="" id="addDataSourceModal">
+  <!-- Data Set Popup Content -->
+  <zf-popup id="dataSetPopup">
+    <div class="grid-block">
+      <div class="grid-block">
+        <div class="grid-content">
+          <h3>Data Set 1</h3>
+          <p>Details about the Data Set...</p>
+        </div>
+      </div>
+      <div class="grid-block">
+        <div class="grid-content">
+          <h4>Actions</h4>
+          <a ui-sref="explore({ id: 1 })" class="button">Explore</a>
+          <a href="#" class="button">Add to project</a>
+          <a href="#" class="button alert">Delete</a>
+        </div>
+      </div>
+    </div>
+  </zf-popup>
+
+  <!-- Add Data Set Modal -->
+  <div zf-modal="" id="addDataSetModal">
     <p><a zf-close="" class="close-button">x</a></p>
     <form>
       <div class="grid-block vertical">
         <div class="grid-content">
           <label>
-            Data Source Display Name:
+            Data Set Display Name:
             <input type="text" placeholder="Pretty name">
           </label>
         </div>
         <div class="grid-content">
-          <label>Data Source Type:</label>
+          <label>Data Set Type:</label>
           <select name="" id="dataSourceTypes">
             <option value="fusion">Fusion</option>
             <option value="solr">Solr</option>

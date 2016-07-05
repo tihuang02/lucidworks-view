@@ -1,12 +1,11 @@
 ---
 name: analyze
-url: /dashboard/analyze
+url: /analyze
 animationIn: slideInLeft
 animationOut: slideOutRight
-controller: DashboardExploreController as vm
+controller: DashboardAnalyzeController as vm
 ---
 <div class="grid-frame vertical">
-
   <!-- Top Bar -->
   <nav class="primary title-bar">
       <span class="center">
@@ -19,7 +18,7 @@ controller: DashboardExploreController as vm
     </ul>
   </nav>
 
-  <div class="grid-block">
+  <div class="grid-block shrink">
     <div class="grid-content">
       <analyze-bar></analyze-bar>
     </div>
@@ -27,10 +26,18 @@ controller: DashboardExploreController as vm
 
   <div class="grid-block">
     <div class="grid-content">
-      <!--
-      <table-panel></table-panel>
-      -->
-      <h3>Table Panel</h3>
+      <table-panel panel-data="vm.dataResult"></table-panel>
+    </div>
+  </div>
+
+  <div class="grid-block">
+    <div class="grid-content">
+      <bar-chart
+        chart-data=""
+        chart-config=""
+        bar-height="20"
+        bar-padding="5">
+      </bar-chart>
     </div>
   </div>
 

@@ -37,7 +37,7 @@
   function config($urlRouterProvider, $httpProvider, $locationProvider, ApiBaseProvider,
     ConfigServiceProvider, $windowProvider) {
     'ngInject';
-    $urlRouterProvider.when('/dashboard/explore', '/dashboard');
+    // $urlRouterProvider.when('/explore', '/dashboard');
 
     $urlRouterProvider.otherwise('/search');
 

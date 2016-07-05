@@ -3,5 +3,6 @@ angular.module('lucidworksView.controllers', [
   'lucidworksView.controllers.home',
   'lucidworksView.controllers.login',
   'lucidworksView.controllers.dashboard',
-  'lucidworksView.controllers.dashboard.explore'
+  'lucidworksView.controllers.dashboard.explore',
+  'lucidworksView.controllers.dashboard.analyze'
 ]);

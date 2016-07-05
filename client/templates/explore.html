@@ -1,6 +1,6 @@
 ---
 name: explore
-url: /dashboard/explore/{dataSourceId:[0-9]*}
+url: /explore?id
 animationIn: slideInLeft
 animationOut: slideOutRight
 controller: DashboardExploreController as vm
@@ -19,9 +19,28 @@ controller: DashboardExploreController as vm
     </ul>
   </nav>
 
-  <div class="grid-block">
+  <div class="grid-block shrink">
     <div class="grid-content">
-      Data Source ID = {{ vm.dataSourceId }}
+      <label>Data Set</label>
+      <select ng-model="vm.dataSet"
+              ng-options="d.id for d in vm.dataSets"
+              ng-change="vm.getSchema()">
+      </select>
+    </div>
+  </div>
+
+  <!--
+    loop through each field in the schema, and visualize them.
+  -->
+  <div class="grid-block medium-up-3 shrink">
+    <div class="grid-block" ng-repeat="field in vm.schema.fields">
+      <div class="grid-content">
+        <field-visualizer
+          field-name="field.name"
+          field-type="field.type"
+          field-data="vm.getFieldSummaryData(field.name)">
+        </field-visualizer>
+      </div>
     </div>
   </div>
 

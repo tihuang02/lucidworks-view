@@ -36,7 +36,11 @@ global.paths = {
     'client/assets/scss',
     'bower_components/foundation-apps/scss',
     'bower_components/angucomplete-alt/angucomplete-alt.css',
-    'client/assets/components/**/*.scss'
+    'client/assets/components/**/*.scss',
+    
+    // Bootstrap for Angular UI
+    // 'bower_components/bootstrap/dist/css/bootstrap.css',
+    // 'bower_components/bootstrap/dist/css/bootstrap-theme.css'
   ],
   // These files include Foundation for Apps and its dependencies
   foundationJS: [
@@ -57,8 +61,12 @@ global.paths = {
     'bower_components/ng-orwell/Orwell.js',
     'bower_components/humanize/humanize.js',
     'bower_components/angularjs-humanize/src/angular-humanize.js',
-
-    'bower_components/d3/d3.js'
+    
+    // D3
+    'bower_components/d3/d3.js',
+    // Angular UI Bootstrap
+    'bower_components/angular-touch/angular-touch.js',
+    'bower_components/angular-bootstrap/ui-bootstrap.js'
   ],
   // These files are for your app's JavaScript
   appJS: [
