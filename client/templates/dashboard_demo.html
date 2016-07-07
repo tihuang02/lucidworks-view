@@ -20,6 +20,10 @@ controller: DashboardDemoController as vm
     </ul>
   </nav>
 
+  <div class="grid-block shrink">
+    <a class="button" ng-click="vm.addWidget()">Add Widget</a>
+  </div>
+
   <!-- Gridster and NVD3 stuffs -->
   <div class="grid-block">
     <div class="grid-content">
@@ -28,7 +32,7 @@ controller: DashboardDemoController as vm
           <li gridster-item="widget" ng-repeat="widget in vm.widgets">
             <div class="box">
               <div class="box-header">
-                <h3>{{ widget.name }}</h3>
+                <h4>{{ widget.name }}</h4>
               </div>
               <div class="box-content">
                 <nvd3 options="widget.chart.options"

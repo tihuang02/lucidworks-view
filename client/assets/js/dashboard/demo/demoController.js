@@ -21,6 +21,7 @@
     };
 
     vm.schema = DashDataSetService.getSchema(vm.dataSet.id);
+    vm.addWidget = addWidget;
 
     // mock data for string field type
     vm.fieldSummaryDataForString = [
@@ -58,7 +59,7 @@
       columns: 10,
       mobileModeEnabled: false,
       draggable: {
-        handle: 'h3'
+        handle: 'h4'
       },
       resizable: {
         enabled: true,
@@ -106,6 +107,20 @@
       }
     }];
 
+    function addWidget() {
+      var widget = {
+        sizeY: 1,
+        sizeX: 3,
+        name: 'New Chart',
+        chart: {
+          options: discreteBarChartOptions(),
+          data: discreteBarChartData(),
+          api: {}
+        }
+      };
+
+      vm.widgets.push(widget);
+    }
 
     function discreteBarChartOptions() {
       return {
@@ -176,7 +191,7 @@
         }
       ];
     }
-    
+
     // We want to manually handle `windows.resize` event in each directive.
     // So that we emulate `resize` event using $broadcast method and internally subscribe to this event in each directive.
     // Define event handler
@@ -190,7 +205,7 @@
     angular.element(window).on('resize', function(e){
       vm.$broadcast('resize');
     });
-    
+
     // We want to hide the charts until the grid will be created and all widths and heights will be defined.
     // So that use `visible` property in config attribute
     vm.config = {
