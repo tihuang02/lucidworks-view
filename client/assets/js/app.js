@@ -42,7 +42,7 @@
     'ngInject';
     // $urlRouterProvider.when('/explore', '/dashboard');
 
-    $urlRouterProvider.otherwise('/search');
+    $urlRouterProvider.otherwise('/dashboard');
 
     $httpProvider.interceptors.push('AuthInterceptor');
     $httpProvider.defaults['withCredentials'] = true; //eslint-disable-line

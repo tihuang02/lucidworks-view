@@ -37,10 +37,9 @@ global.paths = {
     'bower_components/foundation-apps/scss',
     'bower_components/angucomplete-alt/angucomplete-alt.css',
     'client/assets/components/**/*.scss',
-
-    // Bootstrap for Angular UI
-    // 'bower_components/bootstrap/dist/css/bootstrap.css',
-    // 'bower_components/bootstrap/dist/css/bootstrap-theme.css'
+    // angular-gridster + nvd3
+    'bower_components/angular-gridster/dist',
+    'bower_components/nvd3/build'
   ],
   // These files include Foundation for Apps and its dependencies
   foundationJS: [
@@ -61,16 +60,12 @@ global.paths = {
     'bower_components/ng-orwell/Orwell.js',
     'bower_components/humanize/humanize.js',
     'bower_components/angularjs-humanize/src/angular-humanize.js',
-
     // D3
     'bower_components/d3/d3.js',
     // NVD3 + Gridster
-    'bower_components/nvd3/build/nv.d3.js',
-    'bower_components/angular-nvd3/dist/angular-nvd3.js',
-    'bower_components/angular-gridster/src/angular-gridster.js',
-    // Angular UI Bootstrap
-    'bower_components/angular-touch/angular-touch.js',
-    'bower_components/angular-bootstrap/ui-bootstrap.js'
+    'bower_components/nvd3/build/nv.d3.min.js',
+    'bower_components/angular-nvd3/dist/angular-nvd3.min.js',
+    'bower_components/angular-gridster/dist/angular-gridster.min.js'
   ],
   // These files are for your app's JavaScript
   appJS: [

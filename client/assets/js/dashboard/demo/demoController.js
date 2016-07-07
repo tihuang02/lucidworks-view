@@ -4,13 +4,11 @@
   angular
     .module('lucidworksView.dashboard.demo', [
       'lucidworksView.services.config',
-      'lucidworksView.services.dashboard.dataset',
-      'nvd3',
-      'gridster'
+      'lucidworksView.services.dashboard.dataset'
     ])
     .controller('DashboardDemoController', DashboardDemoController);
 
-  function DashboardDemoController($stateParams, ConfigService, DashDataSetService) {
+  function DashboardDemoController($stateParams, $timeout, ConfigService, DashDataSetService) {
     'ngInject';
     var vm = this;
     vm.appName = ConfigService.config.search_app_title;
@@ -56,8 +54,8 @@
 
     // Gridster options
     vm.gridsterOptions = {
-      margins: [20, 20],
-      columns: 4,
+      margins: [10, 10],
+      columns: 10,
       mobileModeEnabled: false,
       draggable: {
         handle: 'h3'
@@ -84,13 +82,23 @@
     };
 
 
-
     vm.widgets = [{
       col: 0,
       row: 0,
-      sizeY: 2,
-      sizeX: 2,
+      sizeY: 1,
+      sizeX: 3,
       name: "Discrete Bar Chart",
+      chart: {
+        options: discreteBarChartOptions(),
+        data: discreteBarChartData(),
+        api: {}
+      }
+    }, {
+      col: 4,
+      row: 1,
+      sizeY: 1,
+      sizeX: 3,
+      name: 'Bar Chart 2',
       chart: {
         options: discreteBarChartOptions(),
         data: discreteBarChartData(),
@@ -168,5 +176,28 @@
         }
       ];
     }
+    
+    // We want to manually handle `windows.resize` event in each directive.
+    // So that we emulate `resize` event using $broadcast method and internally subscribe to this event in each directive.
+    // Define event handler
+    vm.events = {
+      resize: function(e, scope) {
+        $timeout(function(){
+          scope.api.update();
+        }, 200);
+      }
+    };
+    angular.element(window).on('resize', function(e){
+      vm.$broadcast('resize');
+    });
+    
+    // We want to hide the charts until the grid will be created and all widths and heights will be defined.
+    // So that use `visible` property in config attribute
+    vm.config = {
+      visible: false
+    };
+    $timeout(function(){
+      vm.config.visible = true;
+    }, 200);
   }
 })();

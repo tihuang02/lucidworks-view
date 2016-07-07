@@ -2,9 +2,7 @@
   'use strict';
 
   angular
-    .module('lucidworksView.components.dashboard.table', [
-      'ui.bootstrap'
-    ])
+    .module('lucidworksView.components.dashboard.table', [])
     .directive('tablePanel', tablePanel);
 
   function tablePanel() {

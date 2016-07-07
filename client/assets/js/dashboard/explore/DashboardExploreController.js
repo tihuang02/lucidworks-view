@@ -4,9 +4,7 @@
   angular
     .module('lucidworksView.dashboard.explore', [
       'lucidworksView.services.config',
-      'lucidworksView.services.dashboard.dataset',
-      'nvd3',
-      'gridster'
+      'lucidworksView.services.dashboard.dataset'
     ])
     .controller('DashboardExploreController', DashboardExploreController);
 

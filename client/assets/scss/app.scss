@@ -3,6 +3,9 @@
 @import "foundation";
 @import "../components/components";
 
+@import "angular-gridster.min";
+@import "nv.d3.min";
+
 #sidebar {
   //padding: 0 !important;
   //background: #f9f9f9 !important;
@@ -23,7 +26,7 @@
   margin-top: .75rem;
   .card-get-started,
   .card-no-results {
-    text-align: center;   
+    text-align: center;
   }
 }
 
