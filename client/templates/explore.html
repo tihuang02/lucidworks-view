@@ -10,15 +10,16 @@ controller: DashboardExploreController as vm
   <!-- Top Bar -->
   <nav class="primary title-bar">
       <span class="center">
-        <span class="show-for-small-only"><a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a></span>
+        <span class="show-for-small-only"><a class="title" ui-sref="dashboard"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a></span>
       </span>
     <ul class="left menu-bar primary condense">
       <li class="show-for-medium">
-        <a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a>
+        <a class="title" ui-sref="dashboard"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a>
       </li>
     </ul>
   </nav>
 
+  <!-- Data Set drop-down selection -->
   <div class="grid-block shrink">
     <div class="grid-content">
       <label>Data Set</label>
@@ -26,6 +27,22 @@ controller: DashboardExploreController as vm
               ng-options="d.id for d in vm.dataSets"
               ng-change="vm.getSchema()">
       </select>
+    </div>
+  </div>
+
+  <!-- Metadata about the selected data set -->
+  <div class="grid-block shrink" ng-show="vm.dataSet.id">
+    <div class="grid-content">
+      <h5>{{ vm.dataSet.totalRecords }}</h5>
+      <h5>Records</h5>
+    </div>
+    <div class="grid-content">
+      <h5>{{ vm.dataSet.filteredRecords }}</h5>
+      <h5>Filterd Records</h5>
+    </div>
+    <div class="grid-content">
+      <h5>{{ vm.dataSet.totalFields }}</h5>
+      <h5>Fields</h5>
     </div>
   </div>
 
@@ -40,8 +57,23 @@ controller: DashboardExploreController as vm
           field-type="field.type"
           field-data="vm.getFieldSummaryData(field.name)">
         </field-visualizer>
+        <h5>Field Name</h5>
       </div>
     </div>
+
   </div>
 
+  <!-- Gridster -->
+  <div gridster="vm.gridsterOpts">
+    <ul>
+      <li gridster-item="item" ng-repeat="item in vm.fieldItems">
+        <div class="grid-block">
+          <h4>Hello</h4>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
 </div>
+

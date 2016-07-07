@@ -21,11 +21,22 @@
     vm.config = CONFIG_DEFAULT;
 
     // mock data
-    vm.dataSets = [
-      { id: 'collection1' },
-      { id: 'biketrip' },
-      { id: 'movielens' }
-    ];
+    vm.dataSets = [{
+      id: 'collection1',
+      totalRecords: 100000,
+      filteredRecords: 50000,
+      totalFields: 50
+    }, {
+      id: 'biketrip',
+      totalRecords: 200000,
+      filteredRecords: 40000,
+      totalFields: 30
+    }, {
+      id: 'movielens',
+      totalRecords: 900000,
+      filteredRecords: 30000,
+      totalFields: 40
+    }];
 
     // mock data
     vm.schemas = [

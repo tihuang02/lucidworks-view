@@ -11,13 +11,15 @@
     'ngInject';
     return {
       restrict: 'E',
-      templateUrl: 'assets/components/dashboard/fieldVisualizer/fieldVisualizer.html',
+      // templateUrl: 'assets/components/dashboard/fieldVisualizer/fieldVisualizer.html',
       scope: {
         fieldName: '=',
         fieldData: '=',
         fieldType: '='   // can be string, number, datetime, or latlon
       },
       link: function link(scope, element, attrs) {
+        // TODO use NVD3 to create the chart instead of pure D3.
+
         var d3 = D3Service;
         var svg = d3.select(element[0])
           .append('svg')
@@ -27,21 +29,14 @@
           barHeight = parseInt(attrs.barHeight) || 20,
           barPadding = parseInt(attrs.barPadding) || 5;
 
-
         // Browser onresize event
         window.onresize = function () {
           scope.$apply();
         };
 
-        // TODO hard-coded data
-        // scope.data = [
-        //   {name: 'Greg', score: 98},
-        //   {name: 'Ari', score: 96},
-        //   {name: 'Q', score: 75},
-        //   {name: 'Loser', score: 48}
-        // ];
         // TODO parse fieldData according to field type: string or number, create a mapping function()
         scope.data = [];
+
         if (scope.fieldType === 'string') {
           scope.data = scope.fieldData;
         } else if (scope.fieldType === 'double') {
@@ -112,6 +107,9 @@
             .attr('y', function(d, i) {
               return i * (barHeight + barPadding) + 15;
             });
+
+          // TODO add field name at the bottom of the chart
+
         };
 
         // Watch for resize event

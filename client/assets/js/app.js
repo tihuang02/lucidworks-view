@@ -19,7 +19,10 @@
       // Fusion Seed App
       'lucidworksView.components',
       'lucidworksView.services',
-      'lucidworksView.controllers'
+      'lucidworksView.controllers',
+
+      // Dashboard
+      'lucidworksView.dashboard'
     ])
     .constant('_', window._) //eslint-disable-line
     .config(config)

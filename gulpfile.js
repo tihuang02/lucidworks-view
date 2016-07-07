@@ -37,7 +37,7 @@ global.paths = {
     'bower_components/foundation-apps/scss',
     'bower_components/angucomplete-alt/angucomplete-alt.css',
     'client/assets/components/**/*.scss',
-    
+
     // Bootstrap for Angular UI
     // 'bower_components/bootstrap/dist/css/bootstrap.css',
     // 'bower_components/bootstrap/dist/css/bootstrap-theme.css'
@@ -61,9 +61,13 @@ global.paths = {
     'bower_components/ng-orwell/Orwell.js',
     'bower_components/humanize/humanize.js',
     'bower_components/angularjs-humanize/src/angular-humanize.js',
-    
+
     // D3
     'bower_components/d3/d3.js',
+    // NVD3 + Gridster
+    'bower_components/nvd3/build/nv.d3.js',
+    'bower_components/angular-nvd3/dist/angular-nvd3.js',
+    'bower_components/angular-gridster/src/angular-gridster.js',
     // Angular UI Bootstrap
     'bower_components/angular-touch/angular-touch.js',
     'bower_components/angular-bootstrap/ui-bootstrap.js'
@@ -74,7 +78,9 @@ global.paths = {
     'client/assets/js/services/*.js',
     'client/assets/js/controllers/*.js',
     'client/assets/js/utils/**/*.js',
-    'client/assets/components/**/*.js'
+    'client/assets/components/**/*.js',
+    // Dashboard app
+    'client/assets/js/dashboard/**/*.js'
   ],
   components: [
     'client/assets/components/**/*.html',

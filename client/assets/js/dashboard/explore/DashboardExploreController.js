@@ -2,9 +2,11 @@
   'use strict';
 
   angular
-    .module('lucidworksView.controllers.dashboard.explore', [
+    .module('lucidworksView.dashboard.explore', [
       'lucidworksView.services.config',
-      'lucidworksView.services.dashboard.dataset'
+      'lucidworksView.services.dashboard.dataset',
+      'nvd3',
+      'gridster'
     ])
     .controller('DashboardExploreController', DashboardExploreController);
 
@@ -17,7 +19,7 @@
     // vm.dataSetId = $stateParams.id;
     vm.dataSets = DashDataSetService.getDataSets();
     vm.dataSet = {
-      id: $stateParams.id
+      id: $stateParams.id,
     };
 
     vm.schema = DashDataSetService.getSchema(vm.dataSet.id);
@@ -43,13 +45,32 @@
     vm.getFieldSummaryData = function getFieldSummaryData(fieldName) {
       // TODO
       if (fieldName === 'id') {
-        
+
         return vm.fieldSummaryDataForString;
       } else if (fieldName === 'price') {
-        
+
         return vm.fieldSummaryDataForNumber;
       }
       return vm.fieldSummaryDataForString;
     };
+
+    // TODO Gridster testing
+    vm.fieldItems = [
+      { sizeX: 1, sizeY: 1, row: 0, col: 0 },
+      { sizeX: 2, sizeY: 2, row: 0, col: 2 }
+    ];
+
+    vm.gridsterOpts = {
+      width: 'auto',
+      columns: 4,
+      margins: [10, 10],
+      pushing: true,
+      isMobile: false,
+      mobileModeEnabled: false,
+      draggable: {
+        enabled: true,
+        handle: '.grid-block'
+      }
+    }
   }
 })();
