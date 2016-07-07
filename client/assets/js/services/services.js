@@ -9,7 +9,9 @@ angular.module('lucidworksView.services', [
   'lucidworksView.services.queryData',
   'lucidworksView.services.signals',
   'lucidworksView.services.url',
-  
+  'lucidworksView.services.localParams',
+  'lucidworksView.services.clientStats',
+
   'lucidworksView.services.d3',
   'lucidworksView.services.dashboard.dataset',
   'lucidworksView.services.dashboard.result'
