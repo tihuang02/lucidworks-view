@@ -41,7 +41,6 @@
     ConfigServiceProvider, $windowProvider) {
     'ngInject';
     // $urlRouterProvider.when('/explore', '/dashboard');
-
     $urlRouterProvider.otherwise('/dashboard');
 
     $httpProvider.interceptors.push('AuthInterceptor');

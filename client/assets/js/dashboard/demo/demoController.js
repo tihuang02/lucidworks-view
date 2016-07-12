@@ -8,7 +8,7 @@
     ])
     .controller('DashboardDemoController', DashboardDemoController);
 
-  function DashboardDemoController($stateParams, $timeout, ConfigService, DashDataSetService) {
+  function DashboardDemoController($scope, $stateParams, $timeout, ConfigService, DashDataSetService) {
     'ngInject';
     var vm = this;
     vm.appName = ConfigService.config.search_app_title;
@@ -203,7 +203,7 @@
       }
     };
     angular.element(window).on('resize', function(e){
-      vm.$broadcast('resize');
+      $scope.$broadcast('resize');
     });
 
     // We want to hide the charts until the grid will be created and all widths and heights will be defined.

@@ -22,7 +22,7 @@ controller: DashboardExploreController as vm
   <!-- Data Set drop-down selection -->
   <div class="grid-block shrink">
     <div class="grid-content">
-      <label>Data Set</label>
+      <h4>Data Set</h4>
       <select ng-model="vm.dataSet"
               ng-options="d.id for d in vm.dataSets"
               ng-change="vm.getSchema()">
@@ -61,17 +61,6 @@ controller: DashboardExploreController as vm
       </div>
     </div>
 
-  </div>
-
-  <!-- Gridster -->
-  <div gridster="vm.gridsterOpts">
-    <ul>
-      <li gridster-item="item" ng-repeat="item in vm.fieldItems">
-        <div class="grid-block">
-          <h4>Hello</h4>
-        </div>
-      </li>
-    </ul>
   </div>
 
 

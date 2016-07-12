@@ -1,3 +1,7 @@
+/**
+ * Analyze Bar consists of a data set drop-down, query input, sampling input, and a run button.
+ * It is used for executing a query and get a result back for the dashboard.
+ */
 (function () {
   'use strict';
 
@@ -21,7 +25,7 @@
         //   {id: 'collection1'},
         //   {id: 'movielens'}
         // ];
-        scope.datasets = DashDataSetService.getDataSets(); 
+        scope.datasets = DashDataSetService.getDataSets();
 
         scope.query = {
           dataset: '', // dataset to send query to.
@@ -59,7 +63,7 @@
           }, function (error) {
             console.log('error =', error);
           });
-        }
+        };
 
       }
     };

@@ -9,35 +9,65 @@ controller: DashboardAnalyzeController as vm
   <!-- Top Bar -->
   <nav class="primary title-bar">
       <span class="center">
-        <span class="show-for-small-only"><a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a></span>
+        <span class="show-for-small-only"><a class="title" ui-sref="dashboard"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a></span>
       </span>
     <ul class="left menu-bar primary condense">
       <li class="show-for-medium">
-        <a class="title"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a>
+        <a class="title" ui-sref="dashboard"><img ng-if="::vm.logoLocation" ng-src="{{::vm.logoLocation}}" /><span ng-if="::(!vm.logoLocation)">{{::vm.appName}}</span></a>
       </li>
     </ul>
   </nav>
 
+  <!-- Search bar -->
   <div class="grid-block shrink">
     <div class="grid-content">
       <analyze-bar></analyze-bar>
     </div>
   </div>
 
+  <!-- Chart picker panel -->
   <div class="grid-block">
     <div class="grid-content">
-      <table-panel panel-data="vm.dataResult"></table-panel>
+      <chart-picker widgets="vm.widgets"></chart-picker>
     </div>
   </div>
 
+  <!-- Gridster and NVD3 stuffs -->
   <div class="grid-block">
     <div class="grid-content">
-      <bar-chart
-        chart-data=""
-        chart-config=""
-        bar-height="20"
-        bar-padding="5">
-      </bar-chart>
+      <div gridster="vm.gridsterOptions">
+        <ul class="with-3d-shadow with-transitions">
+          <li gridster-item="widget" ng-repeat="widget in vm.widgets">
+            <div class="box">
+              <div class="box-header">
+                <h4>{{ widget.name }}</h4>
+                <div class="box-header-btns pull-right">
+                  <a title="Settings" ng-click="">
+                    <img zf-iconic="" icon="cog" size="small">
+                  </a>
+                  <a title="Remove" ng-click="">
+                    <img zf-iconic="" icon="circle-x" size="small">
+                  </a>
+                </div>
+              </div>
+              <div class="box-content">
+                <nvd3 options="widget.chart.options"
+                      data="widget.chart.data"
+                      api="widget.chart.api"
+                      config="vm.config"
+                      events="vm.events"></nvd3>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table result -->
+  <div class="grid-block">
+    <div class="grid-content">
+      <table-panel panel-data="vm.dataResult"></table-panel>
     </div>
   </div>
 

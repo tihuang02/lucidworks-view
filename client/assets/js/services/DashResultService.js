@@ -6,6 +6,7 @@
     .factory('DashResultService', DashResultService);
 
   function DashResultService($log, _) {
+    'ngInject';
     var vm = this;
     vm.result = {
       headers: [],

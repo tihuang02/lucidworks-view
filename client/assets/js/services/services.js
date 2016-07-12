@@ -14,5 +14,7 @@ angular.module('lucidworksView.services', [
 
   'lucidworksView.services.d3',
   'lucidworksView.services.dashboard.dataset',
-  'lucidworksView.services.dashboard.result'
+  'lucidworksView.services.dashboard.result',
+  'lucidworksView.services.gridster',
+  'lucidworksView.services.nvd3'
 ]);
