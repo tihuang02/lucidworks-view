@@ -29,8 +29,9 @@
 
         scope.query = {
           dataset: '', // dataset to send query to.
-          query: '', // SQL or Solr query
-          sample: '10' // percentage number of sample data to use for the query. Default: 10% of the total data.
+          query: '' // SQL or Solr query
+          // No need to do sampling.
+          // sample: '10' // percentage number of sample data to use for the query. Default: 10% of the total data.
         };
 
         scope.submitQuery = function submitQuery() {
@@ -45,6 +46,7 @@
             q: '*',
             wt: 'json'
           };
+
           QueryDataService.getQueryResults(dummyQuery).then(function(response) {
             console.log('response =', response);
             // TODO validate and parse result into D3 format or tabular format

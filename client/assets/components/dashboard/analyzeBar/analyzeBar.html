@@ -1,6 +1,6 @@
 <form class="analyzeBar" name="analyzeForm">
   <div class="grid-block">
-    <!-- Dataset drop-down -->
+    <!-- Data Set drop-down -->
     <div class="medium-3 grid-content">
       <label>Dataset</label>
       <select ng-model="query.dataset"
@@ -15,12 +15,14 @@
       </label>
     </div>
     <!-- Sample input -->
+    <!--
     <div class="medium-2 grid-content">
       <label>
         Sample % (of 1,000,000)
         <input type="text" ng-model="query.sample" placeholder="Enter the percent number of sample to use for the query. 100 means using all the data.">
       </label>
     </div>
+    -->
     <!-- Run button -->
     <div class="medium-1 grid-content">
       <button class="button" ng-click="submitQuery()">Run</button>
