@@ -4,5 +4,6 @@ angular.module('lucidworksView.dashboard', [
   'gridster',
   
   'lucidworksView.dashboard.explore',
+  'lucidworksView.dashboard.settings',
   'lucidworksView.dashboard.demo'
 ]);
