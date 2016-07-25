@@ -15,7 +15,10 @@
     vm.logoLocation = ConfigService.config.logo_location;
 
     // vm.dataSetId = $stateParams.id;
-    vm.dataSets = DashDataSetService.getDataSets();
+    DashDataSetService.getDataSets().then(function(resp) {
+      vm.dataSets = resp;
+    });
+
     vm.dataSet = {
       id: $stateParams.id,
     };

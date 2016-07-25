@@ -1,13 +1,15 @@
 <div class="grid-block">
-
+  <!-- Fields panel -->
   <div class="medium-4 grid-content">
     <h5>Fields</h5>
-    <table class="tablePanel table-fieldlist">
+    <table class="table-panel table-fieldlist">
       <thead>
-        <th></th>
-        <th>Field</th>
-        <th>Type</th>
-        <th>Description</th>
+        <tr>
+          <th></th>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
       </thead>
       <tbody>
         <tr>
@@ -26,33 +28,31 @@
     </table>
   </div>
 
+  <!-- Table panel -->
   <div class="medium-8 grid-content">
     <h5>Results 1 - 30 of 100,000</h5>
-    <table class="tablePanel table-result">
+    <table class="table-panel table-result">
+
       <thead>
-        <th>userid_i</th>
-        <th>age_i</th>
-        <th>gender_s</th>
-      </thead>
-      <tbody>
         <tr>
-          <td>123</td>
-          <td>25</td>
-          <td>M</td>
+          <th ng-repeat="header in headers">{{ header }}</th>
         </tr>
-        <tr>
-          <td>456</td>
-          <td>34</td>
-          <td>F</td>
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="row in rows">
+          <td ng-repeat="col in row">{{ col }}</td>
         </tr>
       </tbody>
+
     </table>
   </div>
 </div>
 
 <div class="grid-block">
   <div class="grid-content">
-    <p>dynamically show data in table format here.</p>
-    {{ panelData }}
+    <p>DashResultService should provide these:</p>
+    <p>scope.headers = {{ headers }}</p>
+    <p>scope.rows = {{ rows }}</p>
   </div>
 </div>

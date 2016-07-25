@@ -3,15 +3,16 @@
     <!-- Data Set drop-down -->
     <div class="medium-3 grid-content">
       <label>Dataset</label>
-      <select ng-model="query.dataset"
-              ng-options="d.id for d in datasets">
+      <select ng-model="query.dataSet"
+              ng-options="d.id for d in dataSets"
+              ng-change="setDataSet()">
       </select>
     </div>
     <!-- Query bar -->
     <div class="medium-6 grid-content">
       <label>
-        Query
-        <textarea rows="3" ng-model="query.query" placeholder="Type SQL or keywords to search"></textarea>
+        Query (type keywords or SQL)
+        <textarea rows="3" ng-model="query.q" placeholder="Type SQL or keywords to search"></textarea>
       </label>
     </div>
     <!-- Sample input -->

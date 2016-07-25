@@ -45,6 +45,7 @@
           widget.chart.options = Nvd3Service.discreteBarChartOptions();
           widget.chart.data = Nvd3Service.discreteBarChartData();
 
+          console.log('scope = ', scope);
           scope.widgets.push(widget);
         }
 

@@ -7,13 +7,14 @@
 
   angular
     .module('lucidworksView.components.dashboard.analyzeBar', [
+      'lucidworksView.services.config',
       'lucidworksView.services.queryData',
       'lucidworksView.services.dashboard.dataset',
       'lucidworksView.services.dashboard.result'
     ])
     .directive('analyzeBar', analyzeBar);
 
-  function analyzeBar(QueryDataService, DashDataSetService, DashResultService) {
+  function analyzeBar(ConfigService, QueryDataService, DashDataSetService, DashResultService) {
     'ngInject';
     return {
       restrict: 'E',
@@ -25,29 +26,54 @@
         //   {id: 'collection1'},
         //   {id: 'movielens'}
         // ];
-        scope.datasets = DashDataSetService.getDataSets();
+
+
+        // Get a data set list
+        DashDataSetService.getDataSets().then(function(dataSetList) {
+          scope.dataSets = dataSetList;
+          console.log('scope.dataSets = ', scope.dataSets);
+        });
+
+        console.log('DashDataSetService.getDataSetIds() = ', DashDataSetService.getDataSetIds());
 
         scope.query = {
-          dataset: '', // dataset to send query to.
-          query: '' // SQL or Solr query
+          dataSet: {}, // dataSet to send query to.
+          q: '*' // SQL or Solr query
           // No need to do sampling.
           // sample: '10' // percentage number of sample data to use for the query. Default: 10% of the total data.
         };
 
-        scope.submitQuery = function submitQuery() {
+        scope.setDataSet = setDataSet;
+        scope.submitQuery = submitQuery;
+
+        function setDataSet() {
+          ConfigService.config.collection = scope.query.dataSet.id;
+          console.log('ConfigService.config.collection = ', ConfigService.config.collection);
+        }
+
+        function submitQuery() {
           console.log('scope.query =', scope.query);
 
-          // querySrv.submit(scope.query);
+          // if dataSet is empty, do nothing
+          if (!scope.query.dataSet) {
+            return;
+          };
 
+          // querySrv.submit(scope.query);
           // QueryService.setQuery(scope.query);
 
           // TODO validate and parse scope.query
-          var dummyQuery = {
-            q: '*',
+          // var dummyQuery = {
+          //   q: '*',
+          //   wt: 'json'
+          // };
+          var query = {
+            q: scope.query.q,
             wt: 'json'
           };
 
-          QueryDataService.getQueryResults(dummyQuery).then(function(response) {
+          console.log('ConfigService.config = ', ConfigService.config);
+          QueryDataService.getQueryResults(query).then(function(response) {
             console.log('response =', response);
             // TODO validate and parse result into D3 format or tabular format
             //      and save the result in a service
@@ -65,7 +91,7 @@
           }, function (error) {
             console.log('error =', error);
           });
-        };
+        }
 
       }
     };

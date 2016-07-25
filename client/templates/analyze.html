@@ -38,14 +38,16 @@ controller: DashboardAnalyzeController as vm
       <div gridster="vm.gridsterOptions">
         <ul class="with-3d-shadow with-transitions">
           <li gridster-item="widget" ng-repeat="widget in vm.widgets">
-            <div class="box">
+
+            <!-- Widget -->
+            <div class="box" ng-controller="DashboardWidgetController as widgetCtrl">
               <div class="box-header">
                 <h4>{{ widget.name }}</h4>
                 <div class="box-header-btns pull-right">
-                  <a title="Settings" ng-click="">
+                  <a title="Settings" ng-click="widgetCtrl.openSettings(widget)">
                     <img zf-iconic="" icon="cog" size="small">
                   </a>
-                  <a title="Remove" ng-click="">
+                  <a title="Remove" ng-click="widgetCtrl.remove(widget)">
                     <img zf-iconic="" icon="circle-x" size="small">
                   </a>
                 </div>
@@ -59,6 +61,13 @@ controller: DashboardAnalyzeController as vm
               </div>
             </div>
           </li>
+
+          <!--
+          <li gridster-item row="0" col="0" sizeY="5" sizeX="10">
+            <table-panel panel-data="vm.dataResult"></table-panel>
+          </li>
+          -->
+
         </ul>
       </div>
     </div>
@@ -67,8 +76,9 @@ controller: DashboardAnalyzeController as vm
   <!-- Table result -->
   <div class="grid-block">
     <div class="grid-content">
-      <table-panel panel-data="vm.dataResult"></table-panel>
+      <table-panel headers="vm.dataResults.headers" rows="vm.dataResults.rows"></table-panel>
     </div>
   </div>
+
 
 </div>

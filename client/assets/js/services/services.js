@@ -13,6 +13,7 @@ angular.module('lucidworksView.services', [
   'lucidworksView.services.clientStats',
 
   'lucidworksView.services.d3',
+  'lucidworksView.services.dashboard',
   'lucidworksView.services.dashboard.dataset',
   'lucidworksView.services.dashboard.result',
   'lucidworksView.services.gridster',

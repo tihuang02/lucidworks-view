@@ -15,7 +15,14 @@
         }
       }
     })
+    // .config(Config)
     .provider('DashDataSetService', DashDataSetService);
+
+  // function Config(DashDataSetServiceProvider) {
+  //   'ngInject';
+  //   // DashDataSetServiceProvider.getDataSets();
+  //
+  // }
 
   function DashDataSetService(CONFIG_DEFAULT) {
     'ngInject';
@@ -25,23 +32,22 @@
     console.log('vm.config = ', vm.config);
 
     vm.dataSets = [];
-    // mock data
-    // vm.dataSets = [{
-    //   id: 'collection1',
-    //   totalRecords: 100000,
-    //   filteredRecords: 50000,
-    //   totalFields: 50
-    // }, {
-    //   id: 'biketrip',
-    //   totalRecords: 200000,
-    //   filteredRecords: 40000,
-    //   totalFields: 30
-    // }, {
-    //   id: 'movielens',
-    //   totalRecords: 900000,
-    //   filteredRecords: 30000,
-    //   totalFields: 40
-    // }];
+    // Data Set obj
+    // {
+    //   id: 'collection1'
+    //   totalRecords: 10000,
+    //   filteredRecords: 5000,
+    //   totalFields: 50,
+    //
+    //   fields: [{
+    //     name: 'id',
+    //     type: 'string'
+    //   },{
+    //     name: 'price',
+    //     type: 'double'
+    //   }],
+    //
+    // }
 
     // mock data
     vm.schemas = [
@@ -79,21 +85,26 @@
     /////////////
 
     function init() {
+      // init() will run first, before $get()
       // TODO get datasets, schemas, and etc.
+      console.log('Run init() !!!');
 
     }
 
-    function $get($log, _, ConfigService, ApiBase, $http) {
+    function $get($log, $q, _, ConfigService, ApiBase, $http) {
       'ngInject';
 
-      // $log.log('ConfigService =', ConfigService);
-      // ConfigService.getFusionUrl()
+      console.log('Run $get !!!');
+
+      // getDataSets();
 
       return {
         reload: reload,
         getDataSets: getDataSets,
+        getDataSetIds: getDataSetIds,
         getSchemas: getSchemas,
-        getSchema: getSchema
+        getSchema: getSchema,
+        getFields: getFields
       };
 
       /**
@@ -103,25 +114,31 @@
         // TODO
       }
 
+      // TODO getDataSets() might need to be private method.
       /**
-       * Return a list of data sets available.
+       * Return a list of data set objects available.
        */
       function getDataSets() {
-        // TODO
-        // Cannot use fusionCollectionsEndpoint because View send requests through localhost:3000
+        // TODO store dataSet in cache, no need to issue http request everytime
+        // if (vm.dataSets) {
+        //   var deferred = $q.deferred();
+        //
+        // }
+
+        // TODO Cannot use fusionCollectionsEndpoint because View send requests through localhost:3000
         var fusionCollectionsEndpoint = ConfigService.config.host + ':' + ConfigService.config.port + vm.config.api.fusion.collections;
         $log.info('fusionCollectionsEndpoint = ', fusionCollectionsEndpoint);
 
-        var apiBase = ApiBase.getEndpoint().replace(/\/$/,'');
+        var apiBase = ApiBase.getEndpoint().replace(/\/$/,''); // Trim a slash at the end
         $log.info('apiBase = ', apiBase);
 
         var collectionsUrl = apiBase + vm.config.api.fusion.collections;
         $log.info('collectionsUrl = ', collectionsUrl);
 
-        // Clear vm.dataSets first
+        // Empty vm.dataSets first
         vm.dataSets = [];
 
-        $http.get(collectionsUrl).then(function(resp){
+        return $http.get(collectionsUrl).then(function(resp){
           $log.info('resp = ', resp);
 
           angular.forEach(resp.data, function(v) {
@@ -134,24 +151,32 @@
             };
             this.push(dataSet);
           }, vm.dataSets);
+
           $log.info('vm.dataSets = ', vm.dataSets);
+          return vm.dataSets;
         }, function(error) {
           $log.error('Error: ' + error);
         });
-
-        return vm.dataSets;
       }
 
-        /**
-         * Return a list of schemas.
-         * @returns {Array|*[]}
-         */
+      /**
+       * Return a list of data set ids.
+       */
+      function getDataSetIds() {
+        console.log('_.map(vm.dataSets, "id") = ', _.map(vm.dataSets, 'id'));
+        return _.map(vm.dataSets, 'id');
+      }
+
+      /**
+       * Return a list of schemas.
+       * @returns {Array|*[]}
+       */
       function getSchemas() {
         return vm.schemas;
       }
 
       /**
-       * Return a schmea of the specified Fusion collection name.
+       * Return a schema of the specified Fusion collection name.
        * @param {string} dataSet
        */
       function getSchema(dataSetId) {
@@ -159,6 +184,15 @@
         return _.find(vm.schemas, function(s) {
           return s.dataSetId === dataSetId;
         });
+      }
+
+      /**
+       * Get a list of field names for the data set.
+       * @param dataSetId
+       */
+      function getFields(dataSetId) {
+
+
       }
     }
   }
